@@ -12,12 +12,16 @@ namespace BatteryStreamer
             if (BatteryStreamData.IsReadingCountGreaterThan15(readingCount))
             {
                 BatteryStreamData batteryStreamData = new BatteryStreamData();
-                batteryStreamData.CreateBatteryMeasureReadingsList(readingCount);
-                batteryStreamData.PrintBatteryMeasureReadings();
+                for(int count = 0; count < readingCount; count++)
+                {
+                    batteryStreamData.GenerateBatteryReadings();
+                    Console.WriteLine("Temperature: " + batteryStreamData.BatteryReadings[count].Temperature + " Charge Rate: " + batteryStreamData.BatteryReadings[count].ChargeRate);
+                    System.Threading.Thread.Sleep(5000);
+                }
             }
             else
             {
-                Console.WriteLine("Please provide the valid number!!!");
+                Console.WriteLine("Minimum readings value should be 15");
             }
         }
     }
