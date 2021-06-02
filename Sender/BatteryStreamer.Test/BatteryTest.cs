@@ -19,7 +19,7 @@ namespace BatteryStreamer.Test
         public void GivenReadingCount_WhenGreaterThanOrEqualTo15_CreatesReadingRange()
         {
             BatteryStreamData batteryStreamData = new BatteryStreamData();
-            batteryStreamData.CreateBatteryMeasureReadingsList(int.Parse("15"));
+            batteryStreamData.GenerateBatteryReadings();
             Assert.IsNotNull(batteryStreamData.BatteryReadings);
         }
         [TestMethod]
