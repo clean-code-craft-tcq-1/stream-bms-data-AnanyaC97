@@ -6,38 +6,36 @@ namespace BatteryStreamer.Test
     public class BatteryTest
     {
         [TestMethod]
-        public void GivenReadingCount_WhenLessThan15_ReturnsFalse()
+        public void GivenNoReadings_WhenListIsEmpty_ReturnsTrue()
         {
-            Assert.IsFalse(BatteryStreamData.IsReadingCountGreaterThan15(int.Parse("5")));
+            Assert.IsTrue(new BatteryStreamData().IsReadingListEmpty());
         }
         [TestMethod]
-        public void GivenReadingCount_WhenGreaterThanOrEqualTo15_ReturnsTrue()
+        public void GivenReadingCount_WhenListIsNotEmpty_CreatesReadingRange()
         {
-            Assert.IsTrue(BatteryStreamData.IsReadingCountGreaterThan15(int.Parse("15")));
-        }
-        [TestMethod]
-        public void GivenReadingCount_WhenGreaterThanOrEqualTo15_CreatesReadingRange()
-        {
-            BatteryStreamData batteryStreamData = new BatteryStreamData();
-            batteryStreamData.GenerateBatteryReadings();
-            Assert.IsNotNull(batteryStreamData.BatteryReadings);
+            BatteryGenerateData batteryGenerateData = new BatteryGenerateData();
+            for(int count = 0; count <=15; count++)
+            {
+                batteryGenerateData.GenerateBatteryReadings();
+            }
+            Assert.IsNotNull(batteryGenerateData.BatteryReadings);
         }
         [TestMethod]
         public void GetRandomNumber_WhenWithinGivenRange()
         {
-            double randomNumber = new BatteryStreamData().GenerateRandomNumber(0, 10);
+            double randomNumber = new BatteryGenerateData().GenerateRandomNumber(0, 10);
             Assert.IsTrue(randomNumber >= 0 && randomNumber <= 10);
         }
         [TestMethod]
         public void GetTemperature_WhenWithinGivenRange()
         {
-            double temperature = new BatteryStreamData().GenerateTemperatureValue();
+            double temperature = new BatteryGenerateData().GenerateTemperatureValue();
             Assert.IsTrue(temperature <= BatteryConstants.MaxTemperature && temperature >= BatteryConstants.MinTemperature);
         }
         [TestMethod]
         public void GetChargeRate_WhenWithinGivenRange()
         {
-            double ChargeRate = new BatteryStreamData().GenerateChargeRateValue();
+            double ChargeRate = new BatteryGenerateData().GenerateChargeRateValue();
             Assert.IsTrue(ChargeRate <= BatteryConstants.MaxChargeRate && ChargeRate >= BatteryConstants.MinChargeRate);
         }
     }
