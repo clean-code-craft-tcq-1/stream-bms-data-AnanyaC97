@@ -1,33 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace BatteryStreamer
 {
-    public class BatteryStreamData : IBatteryStreamData
+    public class BatteryStreamData
     {
-        public List<BatteryConstants> BatteryReadings = new List<BatteryConstants>();
-        public static bool IsReadingCountGreaterThan15(int readingCount)
+        BatteryGenerateData batteryGenerateData = new BatteryGenerateData();
+        public bool IsReadingListEmpty()
         {
-            return readingCount >= 15 ? true : false;
+            return batteryGenerateData.BatteryReadings.Count == 0 ? true : false;
         }
-        public void GenerateBatteryReadings()
+        
+        public void StreamData(int count)
         {
-            double temperature = GenerateTemperatureValue();
-            double chargeRate = GenerateChargeRateValue();
-            BatteryReadings.Add(new BatteryConstants(temperature, chargeRate));
-        }
-        public double GenerateTemperatureValue()
-        {
-            return GenerateRandomNumber(BatteryConstants.MinTemperature, BatteryConstants.MaxTemperature);
-        }
-        public double GenerateChargeRateValue()
-        {
-            return GenerateRandomNumber(BatteryConstants.MinChargeRate, BatteryConstants.MaxChargeRate);
-        }
-        public double GenerateRandomNumber(double minValue, double maxValue)
-        {
-            Random random = new Random();
-            return Math.Round((random.NextDouble() * (maxValue - minValue) + minValue), 2);
+            while(!Console.KeyAvailable)
+            {
+                batteryGenerateData.GenerateBatteryReadings();
+                Console.WriteLine("Temperature: " + batteryGenerateData.BatteryReadings[count].Temperature + " Charge Rate: " + batteryGenerateData.BatteryReadings[count].ChargeRate);
+                System.Threading.Thread.Sleep(1000);
+                count++;
+            }
         }
     }
 }
