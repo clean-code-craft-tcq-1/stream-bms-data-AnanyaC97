@@ -7,17 +7,16 @@ namespace BatteryStreamer
         BatteryGenerateData batteryGenerateData = new BatteryGenerateData();
         public bool IsReadingListEmpty()
         {
-            return batteryGenerateData.BatteryReadings.Count == 0 ? true : false;
+            return BatteryConstants.BatteryReadingCount == 0 ? true : false;
         }
         
-        public void StreamData(int count)
+        public void StreamData()
         {
             while(!Console.KeyAvailable)
             {
                 batteryGenerateData.GenerateBatteryReadings();
-                Console.WriteLine("Temperature: " + batteryGenerateData.BatteryReadings[count].Temperature + " Charge Rate: " + batteryGenerateData.BatteryReadings[count].ChargeRate);
+                Console.WriteLine("Temperature: " + batteryGenerateData.BatteryReadings[BatteryConstants.BatteryReadingCount-1].Temperature + " Charge Rate: " + batteryGenerateData.BatteryReadings[BatteryConstants.BatteryReadingCount-1].ChargeRate);
                 System.Threading.Thread.Sleep(1000);
-                count++;
             }
         }
     }

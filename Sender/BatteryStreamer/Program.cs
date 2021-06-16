@@ -12,11 +12,9 @@ namespace BatteryStreamer
 
         public static void StreamBatteryReadings()
         {
-            BatteryStreamData batteryStreamData = new BatteryStreamData();
-            int count = 0;
             do
             {
-                batteryStreamData.StreamData(count);
+                new BatteryStreamData().StreamData();
             } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
         }
     }

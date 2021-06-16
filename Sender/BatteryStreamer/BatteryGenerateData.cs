@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BatteryStreamer
 {
@@ -12,6 +11,7 @@ namespace BatteryStreamer
             double temperature = GenerateTemperatureValue();
             double chargeRate = GenerateChargeRateValue();
             BatteryReadings.Add(new BatteryConstants(temperature, chargeRate));
+            BatteryConstants.BatteryReadingCount++;
         }
         public double GenerateTemperatureValue()
         {
