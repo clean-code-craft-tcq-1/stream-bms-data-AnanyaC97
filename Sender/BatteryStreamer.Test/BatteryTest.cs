@@ -11,10 +11,20 @@ namespace BatteryStreamer.Test
             Assert.IsTrue(new BatteryStreamData().IsReadingListEmpty());
         }
         [TestMethod]
-        public void GivenReadingCount_WhenListIsNotEmpty_CreatesReadingRange()
+        public void GivenReadings_WhenListIsNotEmpty_ReturnsFalse()
         {
             BatteryGenerateData batteryGenerateData = new BatteryGenerateData();
-            for(int count = 0; count <=15; count++)
+            for (int count = 0; count <= 15; count++)
+            {
+                batteryGenerateData.GenerateBatteryReadings();
+            }
+            Assert.IsFalse(new BatteryStreamData().IsReadingListEmpty());
+        }
+        [TestMethod]
+        public void GivenReading_WhenListIsNotEmpty_CreatesReadingRange()
+        {
+            BatteryGenerateData batteryGenerateData = new BatteryGenerateData();
+            for(int count = 0; count <= 15; count++)
             {
                 batteryGenerateData.GenerateBatteryReadings();
             }
