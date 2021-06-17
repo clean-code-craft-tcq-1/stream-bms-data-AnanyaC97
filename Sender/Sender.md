@@ -1,12 +1,14 @@
-#Battery System Sender
+# Battery System Sender
 
-#####Main Program: 
+##### Main Program: 
 The console displays 2 parameters - Battery Temperature and Battery Charge Rate.
 The console keeps streaming data every 1 second until it is stopped (ESCAPE KEY)
 
-######BatteryStreamData.cs - Function used to stream the Battery readings.
+###### BatteryStreamData.cs - Function used to stream the Battery readings.
 
-######BatteryGenerateData.cs - Function used to generate the Battery readings.
+###### BatteryGenerateData.cs - Function used to generate the Battery readings.
+
+###### The console output:
 
 The Battery readings are: (Press Escape to Exit)
 Temperature: 29.47 Charge Rate: 0.6
