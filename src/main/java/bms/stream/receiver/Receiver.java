@@ -35,18 +35,20 @@ public class Receiver {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             String line = reader.readLine();
             valuePrinter = valuePrinterFactory.getValuePrinterFor("console");
-            valuePrinter.print(line);
+            if(line != null) {
+                valuePrinter.print(line);
 
-            BatteryAttribute batteryAttribute = BATTERY_ATTRIBUTE_PARSER.parseToObject(line);
-            TEMPERATURE_STREAM_DATA_QUEUE.offer(batteryAttribute.getTemperature());
-            CHANGERATE_STREAM_DATA_QUEUE.offer(batteryAttribute.getChangeRate());
+                BatteryAttribute batteryAttribute = BATTERY_ATTRIBUTE_PARSER.parseToObject(line);
+                TEMPERATURE_STREAM_DATA_QUEUE.offer(batteryAttribute.getTemperature());
+                CHANGERATE_STREAM_DATA_QUEUE.offer(batteryAttribute.getChangeRate());
 
-            aggregator = aggregatorFactory.getAggregator();
-            temperature = getAttributeAggregateOf(TEMPERATURE_STREAM_DATA_QUEUE, temperature);
-            changeRate = getAttributeAggregateOf(CHANGERATE_STREAM_DATA_QUEUE, changeRate);
+                aggregator = aggregatorFactory.getAggregator();
+                temperature = getAttributeAggregateOf(TEMPERATURE_STREAM_DATA_QUEUE, temperature);
+                changeRate = getAttributeAggregateOf(CHANGERATE_STREAM_DATA_QUEUE, changeRate);
 
-            valuePrinter.print("Temperature:\n" + temperature);
-            valuePrinter.print("Change Rate:\n" + changeRate);
+                valuePrinter.print("Temperature:\n" + temperature);
+                valuePrinter.print("Change Rate:\n" + changeRate);
+            }
         }
 
     }
