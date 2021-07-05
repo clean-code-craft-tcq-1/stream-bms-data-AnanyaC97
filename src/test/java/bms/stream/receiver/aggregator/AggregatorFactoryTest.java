@@ -10,12 +10,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class AggregatorFactoryTest {
 
     @Test
-    void getAggregator() {
+    void testGetAggregator() {
         // ARRANGE
+        AggregatorFactory factory = new AggregatorFactory();
 
-        // ACT
-
-        // ASSERT
-
+        // ACT & ASSERT
+        assertTrue(factory.getAggregator() instanceof AggregatorImpl);
     }
 }
