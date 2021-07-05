@@ -13,7 +13,7 @@ namespace BatteryStreamer
         public void StreamData()
         {
             batteryGenerateData.GenerateBatteryReadings();
-            Console.WriteLine("Temperature: " + batteryGenerateData.BatteryReadings[0].Temperature + " Charge Rate: " + batteryGenerateData.BatteryReadings[0].ChargeRate);
+            Console.WriteLine("Temperature: " + batteryGenerateData.BatteryReadings[0].Temperature + ", Charge Rate: " + batteryGenerateData.BatteryReadings[0].ChargeRate);
             System.Threading.Thread.Sleep(1000);
         }
     }
