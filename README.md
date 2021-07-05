@@ -2,6 +2,8 @@
 
 This project is about sending and receiving BMS data.
 
+### Sender by: Ananya C
+
 ## Decomposition
 
 At a top level, the program runs in two processes - the sender and the receiver.
